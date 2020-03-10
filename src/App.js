@@ -11,7 +11,13 @@ class App extends Component {
   };
 
   switchNameHandler = () => {
-    console.log('switchNameHandler');
+    // console.log('switchNameHandler');
+    this.setState({
+      persons: [
+            { name: 'Updated First', sex: 'Female'},
+            { name: 'Updated Second', sex: 'Male'}
+          ]
+    });
   };
 
   render() {
