@@ -1,34 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 import Person from "./Person/Person";
 
-function App() {
-  return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <h1>Hi, I am learning React</h1>
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    //   <h1>Hello World</h1>
-    // </div>
-    // React.createElement('div', {className: 'App'}, 'Hello World')
-      <div className='App'>
-        <h1>Hi, this is React App</h1>
-        <Person/>
-      </div>
-  );
+class App extends Component {
+  state = {
+    persons: [
+      { name: 'First', sex: 'Female'},
+      { name: 'Second', sex: 'Male'}
+    ]
+  };
+
+  switchNameHandler = () => {
+    console.log('switchNameHandler');
+  };
+
+  render() {
+    return (
+        <div className='App'>
+          <h1>Hi, this is React App</h1>
+          <button onClick={this.switchNameHandler}>Switch Name</button>
+          <Person name={this.state.persons[0].name} sex={this.state.persons[0].sex}/>
+          <Person name={this.state.persons[1].name} sex={this.state.persons[0].sex}>This is a children</Person>
+        </div>
+    )
+  }
 }
 
 export default App;
