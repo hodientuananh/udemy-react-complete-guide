@@ -8,16 +8,15 @@ class App extends Component {
       { id: '1', name: 'First', sex: 'Female'},
       { id: '2', name: 'Second', sex: 'Male'}
     ],
-    showPersons: true
+    showPersons: false
   };
 
   switchNameHandler = () => {
-    // console.log('switchNameHandler');
     this.setState({
       persons: [
-            { id: '1', name: 'Updated First', sex: 'Female'},
-            { id: '2', name: 'Updated Second', sex: 'Male'}
-          ]
+        { id: '1', name: 'Updated First', sex: 'Female'},
+        { id: '2', name: 'Updated Second', sex: 'Male'}
+      ]
     });
   };
 
@@ -55,7 +54,17 @@ class App extends Component {
   };
 
   render() {
+    let buttonStyle = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+    };
     let persons = null;
+    let paragraphStyle = [];
+
     if (this.state.showPersons) {
       persons = (
           <div>
@@ -69,16 +78,25 @@ class App extends Component {
             })}
           </div>
       );
+
+      buttonStyle.backgroundColor = 'red';
+    }
+
+    if (this.state.persons.length <= 1) {
+      paragraphStyle.push('red');
+    }
+    if (this.state.persons.length <= 0) {
+      paragraphStyle.push('bold');
     }
 
     return (
         <div className='App'>
-          <h1>Hi, this is React App</h1>
+          <p className={paragraphStyle.join(' ')}>Hi, this is React App</p>
           <button
-              className='Button'
+              style={buttonStyle}
               onClick={this.switchNameHandler}>Switch Name</button>
           <button
-              className='Button'
+              style={buttonStyle}
               onClick={this.toggleNameHandler}>Toggle Name</button>
           {persons}
         </div>
