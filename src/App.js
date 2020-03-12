@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleRoot } from "radium";
-import './App.css';
+import Classes from './App.css';
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -55,16 +55,9 @@ class App extends Component {
   };
 
   render() {
-    let buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
     let persons = null;
     let paragraphStyle = [];
+    let buttonClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -80,25 +73,23 @@ class App extends Component {
           </div>
       );
 
-      buttonStyle.backgroundColor = 'red';
+      buttonClass = Classes.Red;
     }
 
     if (this.state.persons.length <= 1) {
-      paragraphStyle.push('red');
+      paragraphStyle.push(Classes.red);
     }
     if (this.state.persons.length <= 0) {
-      paragraphStyle.push('bold');
+      paragraphStyle.push(Classes.bold);
     }
 
     return (
         <StyleRoot>
-          <div className='App'>
+          <div className={Classes.App}>
             <p className={paragraphStyle.join(' ')}>Hi, this is React App</p>
             <button
-                style={buttonStyle}
                 onClick={this.switchNameHandler}>Switch Name</button>
             <button
-                style={buttonStyle}
                 onClick={this.toggleNameHandler}>Toggle Name</button>
             {persons}
           </div>
