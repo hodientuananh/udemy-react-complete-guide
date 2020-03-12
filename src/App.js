@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Radium, { StyleRoot } from "radium";
 import './App.css';
 import Person from "./Person/Person";
 
@@ -61,6 +62,10 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
     let persons = null;
     let paragraphStyle = [];
@@ -80,6 +85,10 @@ class App extends Component {
       );
 
       buttonStyle.backgroundColor = 'red';
+      buttonStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     if (this.state.persons.length <= 1) {
@@ -90,18 +99,22 @@ class App extends Component {
     }
 
     return (
-        <div className='App'>
-          <p className={paragraphStyle.join(' ')}>Hi, this is React App</p>
-          <button
-              style={buttonStyle}
-              onClick={this.switchNameHandler}>Switch Name</button>
-          <button
-              style={buttonStyle}
-              onClick={this.toggleNameHandler}>Toggle Name</button>
-          {persons}
-        </div>
+        <StyleRoot>
+          <div className='App'>
+            <p className={paragraphStyle.join(' ')}>Hi, this is React App</p>
+            <button
+                key={'key1'}
+                style={buttonStyle}
+                onClick={this.switchNameHandler}>Switch Name</button>
+            <button
+                key={'key2'}
+                style={buttonStyle}
+                onClick={this.toggleNameHandler}>Toggle Name</button>
+            {persons}
+          </div>
+        </StyleRoot>
     )
   }
 }
 
-export default App;
+export default Radium(App);
